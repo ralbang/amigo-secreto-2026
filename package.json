@@ -1,0 +1,24 @@
+{
+  "name": "amigo-secreto-2026",
+  "version": "1.0.0",
+  "description": "Plataforma web de preinscripción para Amigo Secreto 2026",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "import:excel": "node scripts/import-excel.js data/source/AMIGO_SECRETO_2026.xlsx"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "better-sqlite3": "^11.8.1",
+    "cookie-parser": "^1.4.7",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

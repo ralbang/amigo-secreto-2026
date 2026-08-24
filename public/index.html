@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amigo Secreto 2026 · Preinscripción</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="public-body">
+  <div class="floating-hearts" aria-hidden="true"></div>
+  <main class="public-shell">
+    <section class="hero-card">
+      <p class="eyebrow">💕 Día del Amor y la Amistad</p>
+      <h1 id="eventoNombre">Amigo Secreto – Día del Amor y la Amistad 🇨🇴 2026</h1>
+      <p class="hero-copy">Preinscríbete en segundos desde tu celular. Luego te contactaremos para confirmar el pago y dejarte listo para el sorteo del <strong id="eventoFecha">19 de septiembre de 2026</strong>.</p>
+      <div class="pill-row">
+        <span class="pill gold">🇨🇴 Colombia</span>
+        <span class="pill">📅 19 sep 2026</span>
+        <span class="pill">✨ Cupos centralizados</span>
+      </div>
+    </section>
+
+    <section class="form-card" id="formCard">
+      <h2>💖 Tu preinscripción</h2>
+      <form id="preinscripcionForm" novalidate>
+        <label class="field">
+          <span>Nombre completo</span>
+          <input id="nombre_completo" name="nombre_completo" type="text" placeholder="Ej: María Rodríguez" minlength="3" maxlength="120" autocomplete="name" autofocus required>
+          <small class="hint">Escribe nombre y apellido como deseas que aparezcan en el listado.</small>
+          <small class="error" id="error-nombre"></small>
+        </label>
+
+        <label class="field">
+          <span>Celular</span>
+          <input id="celular" name="celular" type="tel" inputmode="numeric" maxlength="10" pattern="3[0-9]{9}" placeholder="3001234567" autocomplete="tel-national" required>
+          <small class="hint">Solo 10 dígitos. Empieza por 3.</small>
+          <small class="error" id="error-celular" aria-live="polite"></small>
+        </label>
+
+        <fieldset class="field sex-field">
+          <legend>Sexo</legend>
+          <div class="sexo-grid" role="radiogroup" aria-label="Sexo">
+            <label class="sexo-card">
+              <input type="radio" name="sexo" value="H" required>
+              <span class="emoji">👨</span>
+              <span class="label">Hombre</span>
+            </label>
+            <label class="sexo-card">
+              <input type="radio" name="sexo" value="M" required>
+              <span class="emoji">👩</span>
+              <span class="label">Mujer</span>
+            </label>
+          </div>
+          <small class="error" id="error-sexo"></small>
+        </fieldset>
+
+        <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="cta-button" id="submitBtn" type="submit">💕 Preinscribirme</button>
+        <p class="submit-note" id="statusMsg" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="confirm-card hidden" id="successCard" aria-live="polite">
+      <div class="confetti-zone" aria-hidden="true"></div>
+      <h2>¡Listo! 💕</h2>
+      <p id="successText">Tu preinscripción quedó registrada.</p>
+      <button class="secondary-btn" id="resetBtn">Volver al inicio</button>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

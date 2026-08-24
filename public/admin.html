@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin · Amigo Secreto 2026</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="admin-body">
+  <main class="admin-shell">
+    <section class="admin-login card" id="loginView">
+      <h1>🔐 Panel de administración</h1>
+      <p>Inicia sesión para revisar preinscripciones, confirmar pagos y exportar la base.</p>
+      <form id="loginForm" class="stack-form">
+        <label class="field"><span>Usuario</span><input name="usuario" type="text" autocomplete="username" required></label>
+        <label class="field"><span>Contraseña</span><input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="primary-btn" type="submit">Entrar</button>
+        <p class="submit-note" id="loginStatus"></p>
+      </form>
+    </section>
+
+    <section class="dashboard hidden" id="dashboardView">
+      <header class="dashboard-header card">
+        <div>
+          <p class="eyebrow">⚙️ Administración</p>
+          <h1>Amigo Secreto 2026</h1>
+          <p id="adminWelcome">Gestiona registros, filtros y exportaciones.</p>
+        </div>
+        <button class="secondary-btn" id="logoutBtn">Cerrar sesión</button>
+      </header>
+
+      <nav class="tabs card" aria-label="Secciones del panel">
+        <button class="tab active" data-tab="preinscripciones">📋 Preinscripciones</button>
+        <button class="tab" data-tab="exportar">⬇ Exportar</button>
+        <button class="tab" data-tab="configuracion">⚙️ Configuración</button>
+      </nav>
+
+      <section class="tab-panel active" id="tab-preinscripciones">
+        <div class="stats-grid" id="statsGrid"></div>
+        <section class="card filters-card">
+          <div class="filters-grid">
+            <label><span>Sexo</span><select id="filterSexo"><option value="">Todos</option><option value="H">Hombre</option><option value="M">Mujer</option></select></label>
+            <label><span>Estado</span><select id="filterEstado"><option value="">Todos</option><option value="pendiente">Pendiente</option><option value="confirmado_pago">Confirmado pago</option><option value="rechazado">Rechazado</option><option value="asignado">Asignado</option></select></label>
+            <label><span>Fecha desde</span><input id="filterDesde" type="date"></label>
+            <label><span>Fecha hasta</span><input id="filterHasta" type="date"></label>
+            <label class="search-field"><span>Búsqueda</span><input id="filterQ" type="search" placeholder="Nombre o celular"></label>
+          </div>
+          <div class="filter-actions">
+            <button class="primary-btn" id="applyFilters">Aplicar filtros</button>
+            <button class="secondary-btn" id="clearFilters">Limpiar</button>
+          </div>
+        </section>
+
+        <section class="card table-card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Celular</th>
+                  <th>Sexo</th>
+                  <th>Estado</th>
+                  <th>Origen</th>
+                  <th>Fecha</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="rowsBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <button class="secondary-btn" id="prevPage">← Anterior</button>
+            <span id="pageLabel">Página 1</span>
+            <button class="secondary-btn" id="nextPage">Siguiente →</button>
+          </div>
+        </section>
+      </section>
+
+      <section class="tab-panel" id="tab-exportar">
+        <section class="card export-card">
+          <h2>⬇ Exportar listados</h2>
+          <p>Descarga el consolidado con el formato del Excel original y columnas extra para control administrativo.</p>
+          <div class="export-actions">
+            <button class="primary-btn" id="exportXlsx">Exportar a Excel (.xlsx)</button>
+            <button class="secondary-btn" id="exportCsv">Exportar a CSV</button>
+          </div>
+        </section>
+      </section>
+
+      <section class="tab-panel" id="tab-configuracion">
+        <section class="card config-card">
+          <h2>⚙️ Configuración pública</h2>
+          <form id="configForm" class="stack-form">
+            <label class="field"><span>Nombre del evento</span><input name="EVENTO_NOMBRE" type="text" maxlength="120"></label>
+            <label class="field"><span>Fecha del evento</span><input name="EVENTO_FECHA" type="date"></label>
+            <label class="field"><span>Modo de inscripción</span><select name="MODO_INSCRIPCION"><option value="on">Activo</option><option value="off">Pausado</option></select></label>
+            <button class="primary-btn" type="submit">Guardar configuración</button>
+            <p class="submit-note" id="configStatus"></p>
+          </form>
+        </section>
+        <section class="card config-card">
+          <h2>🔑 Cambiar contraseña</h2>
+          <form id="passwordForm" class="stack-form">
+            <label class="field"><span>Contraseña actual</span><input name="password_actual" type="password" required></label>
+            <label class="field"><span>Nueva contraseña</span><input name="password_nueva" type="password" minlength="8" required></label>
+            <label class="field"><span>Repetir nueva contraseña</span><input name="password_nueva_2" type="password" minlength="8" required></label>
+            <button class="primary-btn" type="submit">Actualizar contraseña</button>
+            <p class="submit-note" id="passwordStatus"></p>
+          </form>
+        </section>
+        <section class="card config-card">
+          <h2>🧾 Últimos logs</h2>
+          <div class="table-wrap small-table">
+            <table>
+              <thead><tr><th>Fecha</th><th>IP</th><th>Evento</th><th>User agent</th></tr></thead>
+              <tbody id="logsBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="codeDialog">
+    <form method="dialog" class="dialog-content">
+      <h3>✅ Pago confirmado</h3>
+      <p>Código generado:</p>
+      <strong id="generatedCode" class="code-badge">------</strong>
+      <button class="primary-btn" value="close">Cerrar</button>
+    </form>
+  </dialog>
+
+  <dialog id="editDialog">
+    <form id="editForm" class="dialog-content stack-form">
+      <h3>✏️ Editar registro</h3>
+      <input type="hidden" name="id">
+      <label class="field"><span>Nombre completo</span><input name="nombre_completo" type="text" minlength="3" maxlength="120" required></label>
+      <label class="field"><span>Celular</span><input name="celular" type="tel" maxlength="10" pattern="3[0-9]{9}" required></label>
+      <label class="field"><span>Sexo</span><select name="sexo" required><option value="H">Hombre</option><option value="M">Mujer</option></select></label>
+      <label class="field"><span>Estado</span><select name="estado" required><option value="pendiente">Pendiente</option><option value="confirmado_pago">Confirmado pago</option><option value="rechazado">Rechazado</option><option value="asignado">Asignado</option></select></label>
+      <div class="dialog-actions">
+        <button class="primary-btn" type="submit">Guardar</button>
+        <button class="secondary-btn" type="button" id="cancelEdit">Cancelar</button>
+      </div>
+      <p class="submit-note" id="editStatus"></p>
+    </form>
+  </dialog>
+  <script src="/static/admin.js"></script>
+</body>
+</html>
