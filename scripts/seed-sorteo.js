@@ -157,3 +157,4 @@ async function main() {
   }, null, 2));
 }
 main();
+corregir ruta de base de datos en seed
