@@ -5,7 +5,7 @@ const ExcelJS = require('exceljs');
 const Database = require('better-sqlite3');
 
 const ROOT = path.resolve(__dirname, '..');
-const DB_PATH = path.resolve(ROOT, 'data/amigo-secreto.db');
+const DB_PATH = process.env.DB_PATH ? path.resolve(ROOT, process.env.DB_PATH) : path.resolve(ROOT, 'data/amigo-secreto.db');
 const FILE = path.resolve(process.argv.find(a => a.endsWith('.xlsx')) || path.join(ROOT, 'data/source/participantes-sorteo.xlsx'));
 const FORCE = process.argv.includes('--force');
 const db = new Database(DB_PATH);
@@ -157,4 +157,3 @@ async function main() {
   }, null, 2));
 }
 main();
-corregir ruta de base de datos en seed
