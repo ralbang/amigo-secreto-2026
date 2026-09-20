@@ -556,6 +556,9 @@ app.get('/api/admin/logs', requireAuth, (req, res) => {
   res.json({ ok: true, rows });
 });
 
+const mountSorteo = require('./sorteo');
+mountSorteo(app, { db, jwt, JWT_SECRET, ExcelJS, ROOT, nowBogota, getClientIp, logEvent, requireAuth, requireCsrf });
+
 app.use((req, res) => {
   res.status(404).json({ ok: false, error: 'not_found' });
 });

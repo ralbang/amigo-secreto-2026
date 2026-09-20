@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "import:excel": "node scripts/import-excel.js data/source/AMIGO_SECRETO_2026.xlsx"
+    "import:excel": "node scripts/import-excel.js data/source/AMIGO_SECRETO_2026.xlsx",
+    "seed:sorteo": "node scripts/seed-sorteo.js data/source/participantes-sorteo.xlsx"
   },
   "engines": {
     "node": ">=18"

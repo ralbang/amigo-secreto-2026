@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tablero del sorteo · Amigo Secreto 2026</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="admin-body">
+<main class="admin-shell">
+  <section class="admin-login card" id="loginView">
+    <h1>🔐 Tablero del sorteo</h1>
+    <p>Ingresa con el usuario administrador para ver el avance de los 36 giros.</p>
+    <form id="loginForm" class="stack-form">
+      <label class="field"><span>Usuario</span><input name="usuario" type="text" autocomplete="username" required></label>
+      <label class="field"><span>Contraseña</span><input name="password" type="password" autocomplete="current-password" required></label>
+      <button class="primary-btn" type="submit">Entrar</button>
+      <p class="submit-note" id="loginStatus"></p>
+    </form>
+  </section>
+
+  <section class="hidden" id="boardView">
+    <header class="dashboard-header card">
+      <div>
+        <p class="eyebrow">🎡 Sorteo en vivo</p>
+        <h1 id="progresoTitulo">Van 0 de 36</h1>
+        <p id="progresoSub">Aquí solo se muestra el avance. El sistema nunca revela quién le regala a quién.</p>
+      </div>
+      <div class="card-actions">
+        <button class="secondary-btn" id="refreshBtn">🔄 Actualizar</button>
+        <button class="secondary-btn" id="logoutBtn">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>💡 Luces del tablero (36)</h2>
+      <p class="hint">Se enciende una luz cuando esa persona completa su giro definitivo. Ideal para tomar captura de pantalla y compartir el avance.</p>
+      <div class="lights-grid" id="lightsGrid"></div>
+    </section>
+
+    <section class="card">
+      <h2>⬇ Enlaces personales</h2>
+      <p class="hint">Cada enlace es único e intransferible. Repártelos manualmente por WhatsApp. El enlace no contiene el emparejamiento y no se puede adivinar.</p>
+      <div class="export-actions">
+        <button class="primary-btn" id="linksXlsx">Descargar Excel con enlaces</button>
+        <button class="secondary-btn" id="linksCsv">Descargar CSV con enlaces</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>💌 Texto de cierre</h2>
+      <p class="hint" id="cierreEstado"></p>
+      <label class="field"><span>Mensaje de amor y amistad (editable)</span><textarea id="cierreTexto" rows="4"></textarea></label>
+      <div class="export-actions">
+        <button class="primary-btn" id="saveCierre">Guardar mensaje</button>
+        <button class="secondary-btn" id="copyCierre">📋 Copiar para enviar</button>
+      </div>
+      <p class="submit-note" id="cierreNote"></p>
+    </section>
+
+    <section class="card">
+      <h2>🔒 Verificación de privacidad</h2>
+      <p class="hint">Comprobación técnica del cifrado. No muestra ningún emparejamiento.</p>
+      <div class="table-wrap small-table">
+        <table>
+          <thead><tr><th>Sorteo</th><th>Asignaciones</th><th>Destinos únicos</th><th>Biyección</th><th>Revelados</th></tr></thead>
+          <tbody id="auditBody"></tbody>
+        </table>
+      </div>
+      <p class="submit-note" id="auditNote"></p>
+    </section>
+  </section>
+</main>
+<script src="/static/admin-sorteo.js"></script>
+</body>
+</html>

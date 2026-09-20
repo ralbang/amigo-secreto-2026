@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gira la rueda · Amigo Secreto 2026</title>
+<link rel="stylesheet" href="/static/sorteo.css">
+</head>
+<body class="sorteo-body">
+<div class="hearts-bg" aria-hidden="true"></div>
+<main class="sorteo-shell">
+  <header class="card hero-sorteo">
+    <p class="eyebrow">💕 Día del Amor y la Amistad · 2026</p>
+    <h1>Gira tu rueda</h1>
+    <p id="yoInfo" class="yo-info">Cargando tu enlace personal…</p>
+    <div class="pill-row">
+      <span class="pill">🎯 Giro <strong id="giroNum">0</strong> de 3</span>
+      <span class="pill">🍀 2 de ensayo + 1 definitivo</span>
+    </div>
+  </header>
+
+  <section class="card wheel-card">
+    <div class="wheel-stage">
+      <div class="pointer" aria-hidden="true"></div>
+      <svg class="wheel" id="wheel" viewBox="0 0 400 400" role="img" aria-label="Rueda de 18 segmentos con códigos anónimos">
+        <g id="wheelGroup"></g>
+      </svg>
+      <div class="wheel-hub"><span id="hubText">💕</span></div>
+    </div>
+    <button class="gira-btn" id="giraBtn" disabled>💗 GIRA</button>
+    <p class="spin-note" id="spinNote" aria-live="polite"></p>
+  </section>
+
+  <section class="card result-card hidden" id="resultCard" aria-live="polite">
+    <h2 id="resultTitle">Resultado</h2>
+    <p class="result-aviso" id="resultAviso"></p>
+    <div class="result-body">
+      <p class="result-code" id="resultCodigo"></p>
+      <p class="result-name" id="resultNombre"></p>
+      <p class="result-phone" id="resultCelular"></p>
+    </div>
+    <div class="result-actions">
+      <button class="secondary-btn" id="waBtn">📲 Enviar por WhatsApp</button>
+      <button class="secondary-btn" id="copyBtn">📋 Copiar resultado</button>
+    </div>
+    <p class="locked-note hidden" id="lockedNote">🔒 <strong>Ya escogiste.</strong> Este es tu resultado definitivo y quedó guardado.</p>
+  </section>
+
+  <section class="card cierre-card hidden" id="cierreCard">
+    <h3>💌 Mensaje de cierre</h3>
+    <p id="cierreTexto"></p>
+  </section>
+</main>
+<script src="/static/sorteo.js"></script>
+</body>
+</html>
